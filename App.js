@@ -13,7 +13,6 @@ export default function App() {
 
   function inputHandler(inputValue) {
     setInputGoal(inputValue);
-    console.log(inputValue);
   }
 
   function addGoalHandler() {
