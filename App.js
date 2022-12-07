@@ -8,6 +8,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+import ItemHandler from "./components/ItemHandler";
 
 export default function App() {
   const [inputGoal, setInputGoal] = useState("");
@@ -43,11 +44,7 @@ export default function App() {
             return item.id;
           }}
           renderItem={(itemData) => {
-            return (
-              <View>
-                <Text>{itemData.item.text}</Text>
-              </View>
-            );
+            return <ItemHandler text={itemData.item.text} />;
           }}
         />
       </View>
@@ -97,14 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    width: "100%",
-  },
-  items: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "violet",
-    color: "white",
     width: "100%",
   },
 });
