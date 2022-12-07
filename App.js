@@ -8,17 +8,13 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+import InputController from "./components/InputController";
 import ItemHandler from "./components/ItemHandler";
 
 export default function App() {
-  const [inputGoal, setInputGoal] = useState("");
   const [arrayItem, setArrayItem] = useState([]);
 
-  function inputHandler(inputValue) {
-    setInputGoal(inputValue);
-  }
-
-  function addGoalHandler() {
+  function addGoalHandler(inputGoal) {
     setArrayItem((newArrayItem) => [
       ...newArrayItem,
       { text: inputGoal, id: Math.random().toString() },
@@ -26,17 +22,7 @@ export default function App() {
   }
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        <View style={styles.input}>
-          <TextInput placeholder="Enter Text..." onChangeText={inputHandler} />
-        </View>
-
-        <View style={styles.button}>
-          <TouchableOpacity title={"Add Button"} onPress={addGoalHandler}>
-            <Text>Add Button</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <InputController onAddButton={addGoalHandler} />
       <View style={styles.bottomContainer}>
         <FlatList
           data={arrayItem}
@@ -61,34 +47,7 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
   },
-  input: {
-    flex: 2,
-    width: "70%",
-    justifyContent: "center",
-    marginVertical: 2,
-    paddingVertical: 2,
-    borderWidth: 1,
-  },
-  button: {
-    //width: "20%",
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 0,
-    marginVertical: 0,
-  },
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    borderBottomWidth: 1,
-    borderColor: "#CCCCCC",
-    paddingBottom: 20,
-    marginBottom: 20,
-  },
+
   bottomContainer: {
     flex: 6,
     flexDirection: "column",
