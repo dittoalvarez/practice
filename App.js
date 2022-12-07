@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "70%",
-    marginVertical: 5,
-    paddingVertical: 5,
+    marginVertical: 1,
+    paddingVertical: 1,
   },
   button: {
     width: "20%",
