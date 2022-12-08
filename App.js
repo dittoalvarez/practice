@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StyleSheet, View, Button, FlatList } from "react-native";
 import InputController from "./components/InputController";
 import ItemHandler from "./components/ItemHandler";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [arrayItem, setArrayItem] = useState([]);
@@ -23,29 +24,32 @@ export default function App() {
     cancelToCloseModal();
   }
   return (
-    <View style={styles.mainContainer}>
-      <Button
-        title="Add New Goal"
-        color="purple"
-        onPress={startAddGoalHandler}
-      />
-      <InputController
-        visible={modalIsVisible}
-        onAddButton={addGoalHandler}
-        onCancel={cancelToCloseModal}
-      />
-      <View style={styles.bottomContainer}>
-        <FlatList
-          data={arrayItem}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-          renderItem={(itemData) => {
-            return <ItemHandler text={itemData.item.text} />;
-          }}
+    <>
+      <StatusBar />
+      <View style={styles.mainContainer}>
+        <Button
+          title="Add New Goal"
+          color="purple"
+          onPress={startAddGoalHandler}
         />
+        <InputController
+          visible={modalIsVisible}
+          onAddButton={addGoalHandler}
+          onCancel={cancelToCloseModal}
+        />
+        <View style={styles.bottomContainer}>
+          <FlatList
+            data={arrayItem}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+            renderItem={(itemData) => {
+              return <ItemHandler text={itemData.item.text} />;
+            }}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
